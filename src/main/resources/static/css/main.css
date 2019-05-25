@@ -1,0 +1,27 @@
+body{
+    background-color: white;
+}
+
+.container{
+    margin-top: 80px;
+}
+
+.card{
+    width: 20rem;
+    height: 26rem;
+}
+
+@media screen and (max-width: 800px){
+    .card{
+        width: 100%;
+    }
+}
+
+.card-text{
+    height: 190px;
+    overflow: hidden;
+}
+
+.col-sm-12{
+    margin-bottom: 20px;
+}

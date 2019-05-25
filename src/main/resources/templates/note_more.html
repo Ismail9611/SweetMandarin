@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${note.title}"></title>
+</head>
+<body>
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header text-muted">
+                    <a th:href="@{/user_profile/{id} (id=${note.author.id})}" style="text-decoration: none;" th:text="${note.author.username}"></a>
+                    <small th:text="'(' + ${note.published} + ')'"></small>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title text-center" th:text="${note.title}"></h5>
+                    <hr>
+                    <p class="card-text" th:text="${note.content}"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>
