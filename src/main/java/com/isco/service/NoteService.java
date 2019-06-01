@@ -6,10 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import javax.swing.text.html.Option;
 import java.util.List;
+import java.util.Optional;
 
 @Service
+@Transactional
 public class NoteService {
 
     private NoteRepository noteRepository;
@@ -25,6 +29,16 @@ public class NoteService {
 
     public Page<Note> findPaginatedSearch(int page, int size, String query){
         return noteRepository.findAll(query, PageRequest.of(page, size));
+    }
+
+    public Note findNoteById(Long id){
+        Optional<Note> noteOptional = noteRepository.findById(id);
+        return noteOptional.orElse(null);
+    }
+
+
+    public void saveNote(Note note){
+        noteRepository.save(note);
     }
 
 }

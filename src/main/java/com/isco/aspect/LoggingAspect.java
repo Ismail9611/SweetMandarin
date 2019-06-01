@@ -20,16 +20,14 @@ public class LoggingAspect {
     public LoggingAspect(){}
 
 
-    @Before("execution( * com.isco.repository..*.*(..))")
+    @Before("execution( * com.isco.service..*.*(..))")
     public void logMethodAccessBefore(JoinPoint joinPoint) {
-        log.info("***** Starting: " + joinPoint.getSignature().getName() + " *****");
-        System.out.println("***** Starting: " + joinPoint.getSignature().getName() + " *****");
+        log.info("***** Starting: " + joinPoint.getSignature() + " *****");
     }
 
-    @AfterReturning("execution( * com.isco.repository..*.*(..))")
+    @AfterReturning("execution( * com.isco.service..*.*(..))")
     public void logMethodAccessAfter(JoinPoint joinPoint) {
-        log.info("***** Completed: " + joinPoint.getSignature().getName() + " *****");
-        System.out.println("***** Completed: " + joinPoint.getSignature().getName() + " *****");
+        log.info("***** Completed: " + joinPoint.getSignature() + " *****");
     }
 
 }

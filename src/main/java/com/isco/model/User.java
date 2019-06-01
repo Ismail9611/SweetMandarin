@@ -38,7 +38,7 @@ public class User implements UserDetails{
 
     @Column(name = "password")
     @NotBlank(message = "Password cannot be blank")
-    @Size(min = 6)
+    @Size(min = 6, max = 30)
     private String password;
 
 

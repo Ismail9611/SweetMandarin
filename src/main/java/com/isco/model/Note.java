@@ -3,9 +3,9 @@ package com.isco.model;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -31,10 +31,17 @@ public class Note {
     @JoinColumn(name = "user_id")
     private User author;
 
-    public Note(String title, String content, Date published, User author){
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "note")
+    private Set<Comment> comments;
+
+    @OneToOne(mappedBy = "note", orphanRemoval = true, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private NoteInfo noteInfo;
+
+    public Note(String title, String content, Date published, User author, Set<Comment> comments){
         this.title = title;
         this.content = content;
         this.published = published;
         this.author = author;
+        this.comments = comments;
     }
 }

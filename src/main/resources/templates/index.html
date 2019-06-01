@@ -4,18 +4,17 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title th:text="#{title}"></title>
+    <title>Sweet Mandarin's Blog</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
           integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
+
     <link rel="stylesheet" href="../static/css/main.css">
-
-
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"
             integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
             crossorigin="anonymous"></script>
     <script type="text/javascript" src="../static/js/main.js"></script>
 </head>
-
 <body>
 
 <!--Header-->
@@ -68,21 +67,28 @@
                                 <a th:href="@{/user_profile/{id} (id=${note.author.id})}" style="text-decoration: none;"
                                    th:text="${note.author.username}"></a>
                                 <small th:text="'(' + ${note.published} + ')'"></small>
+                                <div class="views-count d-inline">
+                                    <i class="fa fa-eye" style="margin-right: 3px;"></i><span th:text="${note.noteInfo.viewsCount}"></span>
+                                </div>
+                                <a class="comment-link" href="#"><i class="fa fa-comment" style="margin-right: 5px;"></i><span th:text="${#lists.size(note.comments)}"></span></a>
                             </div>
                             <div class="card-body">
                                 <h5 class="card-title text-center" th:text="${note.title}"></h5>
                                 <hr>
                                 <p class="card-text" th:text="${note.content}"></p>
                                 <hr>
-                                <a th:href="@{/note_more/{id} (id=${note.id})}" class="btn btn-primary">Read more</a>
+                                <div class="d-inline">
+                                    <a th:href="@{/note/{id} (id=${note.id})}" class="btn btn-primary">Read more</a>
+                                </div>
+                                <div class="note-rate d-inline">
+                                    <i class="fa fa-thumbs-up like like-icon"></i><span th:text="${note.noteInfo.likesCount}"></span>
+                                    <i class="fa fa-thumbs-down dislike dislike-icon"></i><span class="dislike" th:text="${note.noteInfo.dislikesCount}"></span>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </th:block>
             </div>
-
-
-
             <!-- Pagination -->
             <div class="row">
                 <div class="col-12">
@@ -116,11 +122,18 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 </div>
 
+<!-- Footer -->
+<footer class="page-footer font-small blue" style="">
+    <!-- Copyright -->
+    <div class="footer-copyright text-center py-3">© 2019 Copyright -
+        <a href="#" style="color: white;">Ismail Nakkayev</a>
+    </div>
+    <!-- Copyright -->
+</footer>
 
 </body>
 </html>
